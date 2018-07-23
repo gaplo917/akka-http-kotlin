@@ -29,7 +29,7 @@ class MoshiCodec<T>(private val clazz: Class<T>) : Codec<T> {
 
     override fun decode(reader: BsonReader, decoderContext: DecoderContext): T {
         val bsonDocument = rawBsonDocumentCodec.decode(reader, decoderContext)
-        return moshiAdapter.fromJson(bsonDocument.toJson()) ?: throw IllegalStateException("Can not prase ${clazz.name} from bson document")
+        return moshiAdapter.fromJson(bsonDocument.toJson()) ?: throw IllegalStateException("Can not parse ${clazz.name} from bson document")
     }
 
     override fun encode(writer: BsonWriter, value: T, encoderContext: EncoderContext) {
